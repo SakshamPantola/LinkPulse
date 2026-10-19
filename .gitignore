@@ -1,0 +1,58 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Environment variables & secrets (CRITICAL - never commit passwords/secrets)
+.env
+.env.*
+.env.local
+.env.production
+.env.development
+**/.env
+**/.env.*
+**/.env.local
+**/.env.production
+**/.env.development
+!.env.example
+!**/.env.example
+
+# Production builds
+dist/
+**/dist/
+dist-ssr/
+build/
+.next/
+out/
+
+# Logs & debugging
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Editor & IDE files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.swp
+*.swo
+
+# Operating System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Test coverage & temporary files
+coverage/
+.nyc_output/
+scratch/
+tmp/
+*.tmp
