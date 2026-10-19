@@ -1,7 +1,4 @@
 
-// Telemetry ingestion pipeline, GeoIP resolution and URL risk assessment
-
-
 const express         = require('express');
 const cors            = require('cors');
 const helmet          = require('helmet');
