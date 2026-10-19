@@ -181,14 +181,3 @@ Access the app at: `http://localhost:5173`
 - **Strict Input Validation**: Zod schema enforcement across all payloads.
 - **Safe Headers**: Configured with `helmet` for defensive HTTP response headers.
 
----
-
-## 👨‍💻 Author
-
-- **Saksham Pantola** — [GitHub](https://github.com/SakshamPantola) • [LinkPulse](https://link-pulse-delta.vercel.app)
-
----
-
-<div align="center">
-  <sub>Built with ❤️ for High-Performance Web Applications.</sub>
-</div>
