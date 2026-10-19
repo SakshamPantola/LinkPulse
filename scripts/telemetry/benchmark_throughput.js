@@ -1,9 +1,3 @@
-/**
- * Telemetry Ingestion Concurrency & Latency Benchmark Script
- * Authored by Tushar Tiwari (@tiwaritushar02)
- * 
- * Usage: node scripts/telemetry/benchmark_throughput.js
- */
 
 const fs = require('fs');
 const path = require('path');
