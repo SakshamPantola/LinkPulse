@@ -216,25 +216,43 @@ input:focus, select:focus, textarea:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-bg);
-  padding: 1rem;
+  background: radial-gradient(circle at 50% 25%, #15171b 0%, var(--color-bg) 65%);
+  padding: 1.5rem;
 }
 
 .auth-card {
   width: 100%;
-  max-width: 380px;
-  background: var(--color-bg-card);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 2rem;
+  max-width: 400px;
+  background: #17181c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 2.25rem 2rem;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.auth-brand-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.auth-brand-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  box-shadow: 0 0 8px var(--color-primary);
 }
 
 .auth-card h1 {
-  font-size: 1.35rem;
+  font-size: 1.45rem;
   font-weight: 700;
   text-align: center;
   color: #ffffff;
-  margin-bottom: 0.25rem;
+  letter-spacing: -0.02em;
+  margin: 0;
 }
 
 .auth-card .subtitle {
@@ -245,32 +263,71 @@ input:focus, select:focus, textarea:focus {
 }
 
 .auth-card .form-group {
-  margin-bottom: 1rem;
+  margin-bottom: 1.1rem;
 }
 
 .auth-card label {
   display: block;
   font-size: 0.8rem;
   font-weight: 500;
-  color: #d1d5db;
-  margin-bottom: 0.35rem;
+  color: #cbd5e1;
+  margin-bottom: 0.4rem;
 }
 
 .auth-card input {
   width: 100%;
+  padding: 0.65rem 0.85rem;
+  background: #101114;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+.auth-card input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background: #131418;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
 .auth-card .btn {
   width: 100%;
-  margin-top: 0.5rem;
-  padding: 0.65rem;
+  margin-top: 0.75rem;
+  padding: 0.7rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+  transition: all 0.15s ease;
+}
+
+.auth-card .btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.35);
+}
+
+.auth-card .btn:active {
+  transform: scale(0.99);
 }
 
 .auth-card .alt-action {
   text-align: center;
-  margin-top: 1.25rem;
+  margin-top: 1.35rem;
   font-size: 0.825rem;
   color: var(--color-text-muted);
+}
+
+.auth-card .alt-action a {
+  color: var(--color-primary);
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.auth-card .alt-action a:hover {
+  color: #60a5fa;
+  text-decoration: underline;
 }
 
 .error-message {

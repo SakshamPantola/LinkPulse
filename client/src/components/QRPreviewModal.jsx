@@ -2,11 +2,6 @@ import { useState } from 'react';
 import { triggerFileDownload, copySvgToClipboard } from '../lib/qrExport';
 import { QR_COLOR_PRESETS, isScannableContrast } from '../lib/qrPresets';
 
-/**
- * QRPreviewModal Component
- * Interactive dynamic preview dialog with device framing & download actions
- * Developed by Nirmay Tripathi (@nirmaytripathi)
- */
 export default function QRPreviewModal({ isOpen, onClose, link, qrSvg, darkColor, size }) {
   const [copied, setCopied] = useState(false);
   const [activePreset, setActivePreset] = useState(null);

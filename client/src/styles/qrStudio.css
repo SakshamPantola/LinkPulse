@@ -1,8 +1,3 @@
-/**
- * Dynamic QR Code Studio Stylesheet
- * Engineered by Nirmay Tripathi (@nirmaytripathi)
- */
-
 .qr-studio-container {
   display: flex;
   flex-direction: column;
