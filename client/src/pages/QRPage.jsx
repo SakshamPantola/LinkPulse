@@ -110,7 +110,7 @@ export default function QRPage() {
       
       <div className="page-header">
         <h1>QR Code Studio</h1>
-        <p>Create branded, trackable QR codes for your short links with automatic <code>?src=qr</code> attribution</p>
+        <p>Create branded, trackable QR codes for your short links with real-time scan analytics</p>
       </div>
 
       {error && <div className="error-message" style={{ marginBottom: '1.25rem' }}>{error}</div>}
@@ -166,7 +166,7 @@ export default function QRPage() {
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.5rem' }}>
                   <code style={{ fontSize: '0.78rem', color: 'var(--color-accent)' }}>
-                    {qrInfo.targetUrl}
+                    {qrInfo.targetUrl ? qrInfo.targetUrl.replace(/http:\/\/localhost:\d+/, 'https://linkpulse-fbk6.onrender.com') : ''}
                   </code>
                   <button
                     className="btn btn-ghost"
@@ -295,7 +295,7 @@ export default function QRPage() {
                 Scan with any smartphone camera
               </div>
               <p style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', marginTop: '0.25rem' }}>
-                Points to: <code>{qrInfo?.targetUrl}</code>
+                Points to: <code>{qrInfo?.targetUrl ? qrInfo.targetUrl.replace(/http:\/\/localhost:\d+/, 'https://linkpulse-fbk6.onrender.com') : ''}</code>
               </p>
             </div>
 
@@ -307,7 +307,7 @@ export default function QRPage() {
                     fontSize: '0.7rem', fontWeight: 600, padding: '0.15rem 0.45rem',
                     borderRadius: 4, background: '#00cec920', color: 'var(--color-accent)',
                   }}>
-                    source = "qr"
+                    QR Tracked
                   </span>
                 </div>
 

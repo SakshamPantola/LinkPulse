@@ -2,24 +2,47 @@
 
 # ⚡ LinkPulse
 
-### **Next-Gen URL Management, Dynamic QR Engine & Real-Time Analytics Platform**
+### **Enterprise URL Gateway, Dynamic QR Engine & Real-Time Analytics Platform**
+*Developed by Team **PLATFORM404***
 
 [![Live Demo](https://img.shields.io/badge/Demo-Live%20Website-6366f1?style=for-the-badge&logo=vercel)](https://link-pulse-delta.vercel.app)
 [![API Status](https://img.shields.io/badge/API-Live%20on%20Render-46E3B7?style=for-the-badge&logo=render)](https://linkpulse-fbk6.onrender.com/health)
 [![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL%20(Neon)-00E699?style=for-the-badge&logo=postgresql)](https://neon.tech)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 
-*Built for speed, security, and deep marketing insights.*
-
-[🌐 Live Demo](https://link-pulse-delta.vercel.app) • [📖 Documentation](#-api-endpoints) • [🛠️ Architecture](#-system-architecture) • [🚀 Quick Start](#-quick-start)
+[🌐 Live Project Demo](https://link-pulse-delta.vercel.app) • [📖 API Documentation](#-api-endpoints) • [🛠️ Architecture](#-system-architecture) • [🚀 Setup Guide](#-quick-start-local-development)
 
 ---
 
 </div>
 
-## 💡 What is LinkPulse?
+## 🎯 Problem Statement
 
-**LinkPulse** is a production-ready, full-stack link intelligence and analytics platform engineered for modern marketing campaigns and high-throughput redirection. Beyond simple URL shortening, LinkPulse acts as a **smart gateway** with built-in cybersecurity audits, automated bot filtering, geographical telemetry, and asynchronous analytics ingestion.
+Traditional URL shorteners simply truncate links without verifying their authenticity, security, or audience context. In modern web environments, teams and marketers face:
+1. **Security & Phishing Risks**: Malicious destination URLs and chained shorteners mask malware distribution and credential harvesting.
+2. **Data Distortion**: Bots, web crawlers, and preview scrapers artificially inflate click metrics, distorting campaign ROI.
+3. **Lack of Actionable Attribution**: Marketers cannot differentiate between organic digital clicks, physical print scans, geographic origins, or device breakdowns without stitching multiple expensive SaaS tools together.
+4. **Latency Penalties**: Synchronous telemetry collection causes sluggish redirection speeds, negatively impacting conversion rates.
+
+---
+
+## 💡 Our Solution: LinkPulse
+
+**LinkPulse** is a full-stack, enterprise-grade link management and analytics platform engineered to act as a **smart gateway**. It combines sub-millisecond redirection with an asynchronous telemetry ingestion engine, automated cybersecurity risk scoring, crawler filtering, and dynamic branded QR code generation.
+
+---
+
+## 📸 Product Walkthrough & Screenshots
+
+| 📊 Analytics Dashboard | 🔗 Link Management |
+| :---: | :---: |
+| ![Dashboard](./screenshots/dashboard.png) | ![Links Management](./screenshots/links.png) |
+| *Real-time click trends, top performers, active links* | *Custom vanity aliases, status toggles, password locks* |
+
+| 📱 Dynamic QR Code Studio | 📈 Deep Telemetry & Insights |
+| :---: | :---: |
+| ![QR Studio](./screenshots/qr_studio.png) | ![Analytics Details](./screenshots/analytics.png) |
+| *Custom branded colors, real-time preview, vector export* | *Geographical resolution, device split, bot filtering* |
 
 ---
 
@@ -40,11 +63,12 @@
 ### 🏷️ 3. Campaign & Tag Orchestration
 - **Campaign Groups**: Group links under marketing initiatives (e.g., *Summer Launch*, *Twitter Ads*).
 - **Multi-Tag Filtering**: Tag, search, and aggregate click data across multiple distributed links.
-- **Custom Vanity Aliases**: Human-readable short codes (`linkpulse.app/my-custom-name`).
+- **Custom Vanity Aliases**: Human-readable short codes (`/my-custom-name`).
 
 ### 📱 4. Dynamic QR Code Engine
 - Real-time client-side QR generation with customizable error correction levels.
 - Direct **SVG / PNG export** ready for print and digital marketing collateral.
+- Built-in scan attribution tracking to isolate print vs. digital engagement.
 
 ### ⚡ 5. High-Throughput Redirection Engine
 - Sub-millisecond lookup via **in-memory / Redis caching**.
@@ -85,7 +109,7 @@ flowchart TD
 
 | Layer | Technologies |
 | :--- | :--- |
-| **Frontend** | React 18, Vite, Vanilla CSS Design System, Chart/Canvas Visuals |
+| **Frontend** | React 18, Vite, Vanilla CSS Design System, Responsive Glassmorphism |
 | **Backend** | Node.js, Express, Helmet, CORS, Nanoid, Zod Validation |
 | **Database** | PostgreSQL with `pgcrypto` UUIDs, Neon Serverless Postgres |
 | **Security & Auth** | JWT (JSON Web Tokens), bcrypt hashing, Rate Limiting |
@@ -98,8 +122,8 @@ flowchart TD
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/SakshamPantola/LinkPulse.git
-cd LinkPulse
+git clone https://github.com/SakshamPantola/PLATFORM404-LinkPulse.git
+cd PLATFORM404-LinkPulse
 ```
 
 ### 2. Backend Setup
@@ -109,13 +133,14 @@ npm install
 cp .env.example .env
 ```
 
-Configure your `.env`:
+Configure `server/.env`:
 ```env
 PORT=3001
 NODE_ENV=development
 DATABASE_URL=your_postgres_connection_string
 JWT_SECRET=your_jwt_secret_key
 CLIENT_URL=http://localhost:5173
+BASE_URL=http://localhost:3001
 ```
 
 Run database migrations:
@@ -123,13 +148,13 @@ Run database migrations:
 npm run migrate
 ```
 
-Start the backend:
+Start the backend server:
 ```bash
 npm run dev
 ```
 
 ### 3. Frontend Setup
-Open a new terminal:
+In a new terminal:
 ```bash
 cd client
 npm install
@@ -146,7 +171,7 @@ Start the client:
 npm run dev
 ```
 
-Access the app at: `http://localhost:5173`
+Access the application at: `http://localhost:5173`
 
 ---
 
@@ -174,10 +199,22 @@ Access the app at: `http://localhost:5173`
 
 ---
 
+## 👥 Team PLATFORM404
+
+| Member | Role | GitHub |
+| :--- | :--- | :--- |
+| **Saksham Pantola** | Lead Full-Stack Architect & Deployment | [@SakshamPantola](https://github.com/SakshamPantola) |
+| **Nirmay Tripathi** | Frontend UI & Dynamic QR Studio | [@nirmaytripathi](https://github.com/nirmaytripathi) |
+| **Sarthak Bhatt** | Database Engineering & PostgreSQL Migrations | [@SarthakBhatt55](https://github.com/SarthakBhatt55) |
+| **Krishna Sijwali** | Security, URL Risk Scoring & Bot Filtering | [@krish222334843](https://github.com/krish222334843) |
+| **Tushar Tiwari** | Web Assets, Layout & Telemetry Dashboard | [@tiwaritushar02](https://github.com/tiwaritushar02) |
+
+---
+
 ## 🔒 Security Best Practices Implemented
 
 - **Rate Limiting**: Defends authentication and redirection endpoints against brute-force attacks.
 - **SQL Injection Prevention**: 100% parameterized queries via `node-postgres` (`pg`).
 - **Strict Input Validation**: Zod schema enforcement across all payloads.
-- **Safe Headers**: Configured with `helmet` for defensive HTTP response headers.
-
+- **Defensive Headers**: Configured with `helmet` for defensive HTTP response headers.
+- **Privacy First**: IP addresses are hashed using SHA-256 with rotating salts to ensure GDPR-friendly analytics.

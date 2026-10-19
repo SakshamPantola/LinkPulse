@@ -11,5 +11,5 @@ module.exports = {
   },
   redisUrl: process.env.REDIS_URL || null,
   clientUrl: process.env.CLIENT_URL || 'http://localhost:5173',
-  baseUrl: process.env.BASE_URL || `http://localhost:${process.env.PORT || 3001}`,
+  baseUrl: process.env.BASE_URL || process.env.RENDER_EXTERNAL_URL || (process.env.NODE_ENV === 'production' ? 'https://linkpulse-fbk6.onrender.com' : `http://localhost:${process.env.PORT || 3001}`),
 };
