@@ -3,25 +3,61 @@
 # ⚡ LinkPulse
 
 ### **Enterprise URL Gateway, Dynamic QR Engine & Real-Time Analytics Platform**
-*Developed by Team **PLATFORM404***
+*Developed with ❤️ by Team **PLATFORM404***
 
 [![Live Demo](https://img.shields.io/badge/Demo-Live%20Website-6366f1?style=for-the-badge&logo=vercel)](https://link-pulse-delta.vercel.app)
 [![API Status](https://img.shields.io/badge/API-Live%20on%20Render-46E3B7?style=for-the-badge&logo=render)](https://linkpulse-fbk6.onrender.com/health)
 [![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL%20(Neon)-00E699?style=for-the-badge&logo=postgresql)](https://neon.tech)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 
-[🌐 Live Project Demo](https://link-pulse-delta.vercel.app) • [📖 API Documentation](#-api-endpoints) • [🛠️ Architecture](#-system-architecture) • [🚀 Setup Guide](#-quick-start-local-development)
+[🌐 Live Demo](https://link-pulse-delta.vercel.app) • [🔐 Admin Access](#-official-demo--admin-access) • [📸 Screenshots](#-product-walkthrough--visual-showcase) • [🏗️ Architecture](#️-system-architecture) • [🔄 DFD Diagrams](#-data-flow-diagrams-dfd) • [🗄️ ER Diagram](#️-entity-relationship-diagram-erd) • [👥 Team](#-team-platform404)
 
 ---
 
 </div>
 
+## 🔐 Official Demo & Admin Access
+
+For evaluator, judge, and platform reviewer convenience, pre-configured roles are active:
+
+| Role | Email | Password | Privileges Included |
+| :--- | :--- | :--- | :--- |
+| **👑 Super Admin** | `platform404@gmail.com` | `Admin@123` | **Full Platform Oversight**: Access to `/admin`, universal link enable/disable kill-switch, phishing domain blacklist manager, user directory, and platform-wide telemetry graphs. |
+| **👤 Marketer / User** | `user@linkpulse.test` | `User@123` | Short link creation, vanity aliases, password locking, QR studio, campaigns, and link analytics. |
+
+> **Direct Access**: Visit [https://link-pulse-delta.vercel.app](https://link-pulse-delta.vercel.app) and sign in using the Super Admin credentials above to test both user and admin capabilities.
+
+---
+
+## 📸 Product Walkthrough & Visual Showcase
+
+| 📊 Real-Time Analytics Dashboard | 🔗 Active Links Management Table |
+| :---: | :---: |
+| <img src="./screenshots/dashboard.png" width="100%" alt="Real-Time Analytics Dashboard" /> | <img src="./screenshots/links.png" width="100%" alt="Active Links Management Table" /> |
+| *Real-time click trends, top referrers, active vs disabled links* | *Custom vanity aliases, status toggles, password lock badges* |
+
+| 👑 Admin Control Panel & Domain Shield | 🛡️ Link Creation & Password Protection |
+| :---: | :---: |
+| <img src="./screenshots/admin.png" width="100%" alt="Admin Control Panel" /> | <img src="./screenshots/create_link.png" width="100%" alt="Link Creation Interface" /> |
+| *Platform analytics, global link kill-switch, domain blacklist* | *Expiry limits, bcrypt password lock, tags & campaign grouping* |
+
+<div align="center">
+
+### 🔐 Clean Authentication Interface
+<img src="./screenshots/Signin_png.png" width="75%" alt="Authentication Interface" />
+
+*High-contrast responsive glassmorphic authentication with auto-admin rule verification*
+
+</div>
+
+---
+
 ## 🎯 Problem Statement
 
-Traditional URL shorteners simply truncate links without verifying their authenticity, security, or audience context. In modern web environments, teams and marketers face:
-1. **Security & Phishing Risks**: Malicious destination URLs and chained shorteners mask malware distribution and credential harvesting.
+Traditional URL shorteners simply truncate links without verifying their authenticity, security, or audience context. In modern web environments, teams face:
+1. **Security & Phishing Threats**: Malicious destination URLs and chained shorteners mask malware distribution and credential harvesting.
 2. **Data Distortion**: Bots, web crawlers, and preview scrapers artificially inflate click metrics, distorting campaign ROI.
-3. **Lack of Actionable Attribution**: Marketers cannot differentiate between organic digital clicks, physical print scans, geographic origins, or device breakdowns without stitching multiple expensive SaaS tools together.
+3. **Lack of Unified Attribution**: Marketers cannot differentiate between organic digital clicks, physical print scans, geographic origins, or device breakdowns without stitching multiple expensive SaaS tools together.
 4. **Latency Penalties**: Synchronous telemetry collection causes sluggish redirection speeds, negatively impacting conversion rates.
 
 ---
@@ -32,25 +68,11 @@ Traditional URL shorteners simply truncate links without verifying their authent
 
 ---
 
-## 📸 Product Walkthrough & Screenshots
-
-| 📊 Analytics Dashboard | 🔗 Link Management |
-| :---: | :---: |
-| ![Dashboard](./screenshots/dashboard.png) | ![Links Management](./screenshots/links.png) |
-| *Real-time click trends, top performers, active links* | *Custom vanity aliases, status toggles, password locks* |
-
-| 📱 Dynamic QR Code Studio | 📈 Deep Telemetry & Insights |
-| :---: | :---: |
-| ![QR Studio](./screenshots/qr_studio.png) | ![Analytics Details](./screenshots/analytics.png) |
-| *Custom branded colors, real-time preview, vector export* | *Geographical resolution, device split, bot filtering* |
-
----
-
-## ✨ Key Features
+## ✨ Key Platform Features
 
 ### 🛡️ 1. Intelligent Security & URL Auditing
 - **Real-Time Risk Scoring**: Scans destination URLs for chained shorteners (obfuscation attacks), malformed protocols, and suspicious redirect loops.
-- **Phishing & Domain Shield**: Admin-configurable domain blocking system that halts malicious traffic before redirection.
+- **Phishing & Domain Firewall**: Configurable domain blocking system that halts malicious traffic before redirection.
 - **Password Protection**: Encrypt sensitive links with industry-standard **bcrypt** hashing.
 - **Expiration & Click Limits**: Set links to automatically expire after reaching a click threshold or timestamp.
 
@@ -60,19 +82,15 @@ Traditional URL shorteners simply truncate links without verifying their authent
 - **Automated Bot Filtering**: Strips out crawlers, scrapers, and preview bots (`isbot`) to preserve data integrity.
 - **Referrer Tracking**: Categorizes traffic sources (Direct, Social, Search Engines, Referral domains).
 
-### 🏷️ 3. Campaign & Tag Orchestration
+### 👑 3. Centralized Admin Governance
+- **Platform Analytics**: Total users, global link tally, platform click volume, and top target domains.
+- **Emergency Kill-Switch**: Disable or re-enable any link across the entire platform with instant in-memory cache invalidation.
+- **Blocked Domains Shield**: Add, inspect, and remove malicious domains with automatic subdomain enforcement.
+
+### 🏷️ 4. Campaign & Tag Orchestration
 - **Campaign Groups**: Group links under marketing initiatives (e.g., *Summer Launch*, *Twitter Ads*).
 - **Multi-Tag Filtering**: Tag, search, and aggregate click data across multiple distributed links.
 - **Custom Vanity Aliases**: Human-readable short codes (`/my-custom-name`).
-
-### 📱 4. Dynamic QR Code Engine
-- Real-time client-side QR generation with customizable error correction levels.
-- Direct **SVG / PNG export** ready for print and digital marketing collateral.
-- Built-in scan attribution tracking to isolate print vs. digital engagement.
-
-### ⚡ 5. High-Throughput Redirection Engine
-- Sub-millisecond lookup via **in-memory / Redis caching**.
-- **Asynchronous Click Ingestion**: Click events are queued and written to PostgreSQL asynchronously by a background worker, ensuring zero latency penalty for end-users.
 
 ---
 
@@ -80,27 +98,151 @@ Traditional URL shorteners simply truncate links without verifying their authent
 
 ```mermaid
 flowchart TD
-    User([🌐 End User]) -->|1. Clicks Short Link| RedirectEngine[⚡ Redirection Engine]
+    User([🌐 End User / Scanner]) -->|1. HTTP GET Short Code| RedirectEngine[⚡ Redirection Gateway]
     
     subgraph Backend [Server: Express.js on Render]
-        RedirectEngine -->|Check Cache| Cache[(Redis / In-Memory Cache)]
+        RedirectEngine -->|Check Fast Cache| Cache[(Redis / In-Memory Cache)]
         Cache -.->|Cache Miss| DB[(Neon PostgreSQL)]
-        RedirectEngine -->|2. HTTP 302 Redirect| Dest([🎯 Target Destination])
-        RedirectEngine -->|3. Async Dispatch| Worker[⚙️ Background Click Worker]
+        RedirectEngine -->|2. Fast 302 Redirect| Dest([🎯 Target Destination URL])
+        RedirectEngine -->|3. Async Dispatch| Worker[⚙️ Non-Blocking Click Worker]
     end
 
-    subgraph AnalyticsPipeline [Telemetry & Enrichment]
-        Worker --> Geo[🌍 GeoIP Resolver]
-        Worker --> UA[📱 Device & UA Parser]
-        Worker --> Bot[🤖 Bot Detection Filter]
+    subgraph AnalyticsPipeline [Telemetry Enrichment Pipeline]
+        Worker --> Geo[🌍 GeoIP Spatial Resolver]
+        Worker --> UA[📱 Device & UA Normalizer]
+        Worker --> Bot[🤖 isbot Bot Detection Engine]
         Geo & UA & Bot --> Ingest[(PostgreSQL click_events)]
     end
 
-    subgraph ClientApp [Frontend: React + Vite on Vercel]
-        Marketer([👨‍💻 Marketer / Admin]) -->|Manage & View Analytics| Dashboard[📊 LinkPulse Glassmorphic Dashboard]
-        Dashboard -->|REST API with JWT| AuthAPI[🔐 Authenticated API Routes]
+    subgraph ClientApp [Frontend: React 18 + Vite on Vercel]
+        Marketer([👨‍💻 Marketer / Admin]) -->|Manage Links & View Telemetry| Dashboard[📊 LinkPulse Glassmorphic Dashboard]
+        Dashboard -->|REST API with JWT| AuthAPI[🔐 Authenticated API Gateway]
         AuthAPI --> DB
     end
+```
+
+---
+
+## 🔄 Data Flow Diagrams (DFD)
+
+### 📌 DFD Level 0 (Context Diagram)
+
+```mermaid
+graph TD
+    User([🌐 End User]) -->|1. Requests Short URL| LinkPulse[⚡ LinkPulse System Gateway]
+    LinkPulse -->|2. HTTP 302 Redirection| User
+    
+    Marketer([👨‍💼 Marketer / User]) -->|3. Creates Links, Sets Passwords| LinkPulse
+    LinkPulse -->|4. Returns Analytics, Telemetry & QR| Marketer
+    
+    Admin([👑 Super Admin]) -->|5. Moderation, Blacklist Rules, Kill-Switch| LinkPulse
+    LinkPulse -->|6. Platform-Wide Oversight & Threat Stats| Admin
+    
+    LinkPulse -->|7. Verified Forwarding| Destination([🎯 Destination Servers])
+```
+
+### 📌 DFD Level 1 (Detailed Functional Data Flow)
+
+```mermaid
+graph TD
+    User([🌐 Visitor]) -->|Click Link| P1[1.0 Redirection Engine]
+    P1 -->|Read Cache| D1[(Cache / Memory)]
+    D1 -.->|Miss| D2[(PostgreSQL: links)]
+    P1 -->|302 Location Header| User
+    P1 -.->|Raw Event| P2[2.0 Async Telemetry Worker]
+    
+    P2 -->|Resolve IP| ExtGeo[MaxMind GeoIP]
+    P2 -->|Parse UA| ExtBot[isbot Classifier]
+    P2 -->|Store Event| D3[(PostgreSQL: click_events)]
+    
+    Marketer([👨‍💼 Marketer]) -->|Submit URL| P3[3.0 Link Management Wizard]
+    P3 -->|Risk Audit| ExtRisk[Security Heuristics]
+    P3 -->|Check Blacklist| D4[(PostgreSQL: blocked_domains)]
+    P3 -->|Save Link| D2
+    
+    Admin([👑 Admin]) -->|Block Domain / Kill Link| P4[4.0 Admin Governance]
+    P4 -->|Invalidate Cache| D1
+    P4 -->|Update Status| D2
+    P4 -->|Insert Rule| D4
+    P4 -->|Read Aggregates| D3
+    D3 -->|Platform Stats| Admin
+```
+
+---
+
+## 🗄️ Entity-Relationship Diagram (ERD)
+
+```mermaid
+erDiagram
+    USERS ||--o{ LINKS : "creates"
+    USERS ||--o{ CAMPAIGNS : "owns"
+    USERS ||--o{ TAGS : "creates"
+    CAMPAIGNS ||--o{ LINKS : "groups"
+    LINKS ||--o{ CLICK_EVENTS : "records"
+    LINKS ||--o{ LINK_TAGS : "tagged_with"
+    TAGS ||--o{ LINK_TAGS : "applied_to"
+
+    USERS {
+        uuid id PK
+        string email UK
+        string password_hash
+        string name
+        string role "user | admin"
+        timestamptz created_at
+    }
+
+    CAMPAIGNS {
+        uuid id PK
+        uuid user_id FK
+        string name
+        text description
+        timestamptz created_at
+    }
+
+    LINKS {
+        uuid id PK
+        string short_code UK
+        text destination_url
+        uuid user_id FK
+        uuid campaign_id FK
+        string status "active | disabled"
+        timestamptz expires_at
+        int click_limit
+        string password_hash
+        timestamptz created_at
+    }
+
+    TAGS {
+        uuid id PK
+        uuid user_id FK
+        string name
+        timestamptz created_at
+    }
+
+    LINK_TAGS {
+        uuid link_id PK,FK
+        uuid tag_id PK,FK
+    }
+
+    CLICK_EVENTS {
+        uuid id PK
+        uuid link_id FK
+        timestamptz clicked_at
+        text referrer
+        string device
+        string browser
+        string country
+        boolean is_bot
+        boolean is_blocked
+        string visitor_hash
+        string source "link | qr"
+    }
+
+    BLOCKED_DOMAINS {
+        uuid id PK
+        string domain UK
+        timestamptz created_at
+    }
 ```
 
 ---
@@ -109,93 +251,42 @@ flowchart TD
 
 | Layer | Technologies |
 | :--- | :--- |
-| **Frontend** | React 18, Vite, Vanilla CSS Design System, Responsive Glassmorphism |
-| **Backend** | Node.js, Express, Helmet, CORS, Nanoid, Zod Validation |
+| **Frontend SPA** | React 18, Vite, Vanilla CSS Design System, Responsive Glassmorphism |
+| **Backend API** | Node.js, Express, Helmet, CORS, Nanoid, Zod Schema Validation |
 | **Database** | PostgreSQL with `pgcrypto` UUIDs, Neon Serverless Postgres |
-| **Security & Auth** | JWT (JSON Web Tokens), bcrypt hashing, Rate Limiting |
-| **Telemetry** | `geoip-lite`, `ua-parser-js`, `isbot`, SHA-256 Visitor Hashing |
-| **Deployment** | Vercel (Client SPA) + Render (API Server) + Neon (Cloud DB) |
-
----
-
-## 🚀 Quick Start (Local Development)
-
-### 1. Clone the repository
-```bash
-git clone https://github.com/SakshamPantola/PLATFORM404-LinkPulse.git
-cd PLATFORM404-LinkPulse
-```
-
-### 2. Backend Setup
-```bash
-cd server
-npm install
-cp .env.example .env
-```
-
-Configure `server/.env`:
-```env
-PORT=3001
-NODE_ENV=development
-DATABASE_URL=your_postgres_connection_string
-JWT_SECRET=your_jwt_secret_key
-CLIENT_URL=http://localhost:5173
-BASE_URL=http://localhost:3001
-```
-
-Run database migrations:
-```bash
-npm run migrate
-```
-
-Start the backend server:
-```bash
-npm run dev
-```
-
-### 3. Frontend Setup
-In a new terminal:
-```bash
-cd client
-npm install
-```
-
-Create `client/.env`:
-```env
-VITE_API_URL=http://localhost:3001
-VITE_SHORT_BASE_URL=http://localhost:3001
-```
-
-Start the client:
-```bash
-npm run dev
-```
-
-Access the application at: `http://localhost:5173`
+| **Security & Auth** | JWT (JSON Web Tokens), bcrypt hashing, Rate Limiting (20 req/min) |
+| **Telemetry Pipeline** | `geoip-lite`, `ua-parser-js`, `isbot`, SHA-256 Visitor Anonymization |
+| **Cloud Hosting** | Vercel (Frontend SPA) + Render (API Web Service) + Neon (Cloud Postgres) |
 
 ---
 
 ## 📡 API Endpoints
 
 ### 🔐 Authentication
-- `POST /api/auth/register` — Register a new user account
+- `POST /api/auth/register` — Register a new account (auto-assigns admin to `platform404@gmail.com`)
 - `POST /api/auth/login` — Authenticate and receive JWT
-- `GET /api/auth/me` — Retrieve authenticated user profile
+- `GET /api/auth/me` — Retrieve authenticated user profile and role
 
 ### 🔗 Link Management
-- `POST /api/links` — Create a new short link (supports custom alias, password, expiration)
-- `GET /api/links` — List all links with paginated search & tag filtering
-- `GET /api/links/:id` — Get detailed configuration for a specific link
+- `POST /api/links` — Create short link (rate limited: 20/min/user, domain security audit)
+- `GET /api/links` — List all user links with pagination and tag search
+- `GET /api/links/:id` — Granular link details
 - `PATCH /api/links/:id` — Update destination, click limit, or status
-- `DELETE /api/links/:id` — Permanently delete a short link
+- `DELETE /api/links/:id` — Soft-deactivate a link
 
-### 📈 Analytics & Metrics
-- `GET /api/stats/overview` — High-level user metrics (total links, clicks, top referrers)
-- `GET /api/stats/:linkId` — Granular telemetry (time-series, country breakdown, devices)
+### 👑 Admin Governance (Role: admin)
+- `GET /api/admin/stats` — Platform-wide overview KPIs, user count, and top domains
+- `GET /api/admin/links` — Universal link inspection across all users
+- `POST /api/admin/links/:id/disable` — Immediate platform-wide disable & cache purge
+- `POST /api/admin/links/:id/enable` — Restore link functionality
+- `GET /api/admin/users` — Directory of all registered platform users
+- `GET /api/admin/blocked-domains` — List active phishing blacklist domains
+- `POST /api/admin/blocked-domains` — Add domain to blocklist (subdomains auto-enforced)
+- `DELETE /api/admin/blocked-domains/:id` — Remove domain from blocklist
 
-### ⚡ Redirection
-- `GET /:shortCode` — Ultra-fast 302 redirect with asynchronous telemetry recording
-- `POST /:shortCode/verify` — Password verification for protected links
+### ⚡ Redirection & Telemetry
+- `GET /:shortCode` — Sub-millisecond 302 redirect with asynchronous click recording
+- `POST /:shortCode/verify` — Password verification for bcrypt-protected links
 
 ---
 
@@ -259,8 +350,16 @@ Access the application at: `http://localhost:5173`
 
 ## 🔒 Security Best Practices Implemented
 
-- **Rate Limiting**: Defends authentication and redirection endpoints against brute-force attacks.
-- **SQL Injection Prevention**: 100% parameterized queries via `node-postgres` (`pg`).
-- **Strict Input Validation**: Zod schema enforcement across all payloads.
-- **Defensive Headers**: Configured with `helmet` for defensive HTTP response headers.
-- **Privacy First**: IP addresses are hashed using SHA-256 with rotating salts to ensure GDPR-friendly analytics.
+- **Rate Limiting**: Defends link generation endpoints against automated spam (20 req/min).
+- **SQL Injection Prevention**: 100% parameterized queries via `pg`.
+- **Strict Schema Validation**: Zod runtime schema enforcement across all incoming payloads.
+- **Defensive HTTP Headers**: Armed with `helmet` for defense against clickjacking and MIME sniff attacks.
+- **Privacy-First Telemetry**: IP addresses are SHA-256 hashed with rotating salts before storage to preserve GDPR privacy.
+
+---
+
+<div align="center">
+
+Made with ⚡ by **Team PLATFORM404**
+
+</div>
