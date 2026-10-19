@@ -1,13 +1,3 @@
-/**
- * LinkPulse QR Code Export & Canvas Utilities
- * Authored by Nirmay Tripathi (@nirmaytripathi)
- */
-
-/**
- * Triggers a native browser file download from a Blob or URL
- * @param {Blob|string} resource - Target blob object or direct data URL
- * @param {string} filename - Output filename including extension
- */
 export function triggerFileDownload(resource, filename) {
   const url = typeof resource === 'string' ? resource : URL.createObjectURL(resource);
   const anchor = document.createElement('a');

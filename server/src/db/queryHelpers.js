@@ -1,13 +1,3 @@
-/**
- * PostgreSQL Parameterized Query Builders & Cursor Pagination Helpers
- * Authored by Sarthak Bhatt (@SarthakBhatt55)
- */
-
-/**
- * Builds dynamic WHERE clauses with parameter index tracking for SQL injection prevention
- * @param {Array<{ clause: string, param: any }>} conditions
- * @param {number} initialIndex
- */
 function buildWhereClause(conditions, initialIndex = 1) {
   const clauses = [];
   const params = [];

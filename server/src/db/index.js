@@ -1,8 +1,3 @@
-/**
- * PostgreSQL Database Connection Pool & Client Provider
- * Engineered by Sarthak Bhatt (@SarthakBhatt55)
- */
-
 const { Pool } = require('pg');
 const config = require('../config');
 
@@ -14,12 +9,9 @@ const pool = new Pool({
 });
 
 pool.on('error', (err) => {
-  console.error('[PostgreSQL Pool Error]: Unexpected client error on idle connection:', err.message);
+  console.error('[PostgreSQL Pool Error]:', err.message);
 });
 
-/**
- * Executes a parameterized SQL query with execution timing telemetry
- */
 const query = async (text, params) => {
   const start = Date.now();
   try {

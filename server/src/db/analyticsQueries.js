@@ -1,8 +1,3 @@
-/**
- * Aggregated SQL Queries for Click Telemetry & Geo Resolution
- * Authored by Sarthak Bhatt (@SarthakBhatt55)
- */
-
 const { pool } = require('./index');
 
 /**

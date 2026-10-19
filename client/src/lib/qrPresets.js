@@ -1,8 +1,3 @@
-/**
- * LinkPulse Dynamic QR Code Design Presets & Color Themes
- * Authored by Nirmay Tripathi (@nirmaytripathi)
- */
-
 export const QR_COLOR_PRESETS = [
   {
     id: 'cyber-dark',

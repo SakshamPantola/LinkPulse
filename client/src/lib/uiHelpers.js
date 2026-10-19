@@ -1,11 +1,3 @@
-/**
- * LinkPulse Frontend UI & UX Helper Utilities
- * Authored by Nirmay Tripathi (@nirmaytripathi)
- */
-
-/**
- * Formats ISO date timestamp into a human-friendly relative string or formatted date
- */
 export function formatRelativeTimestamp(isoDate) {
   if (!isoDate) return 'Never';
   const now = new Date();

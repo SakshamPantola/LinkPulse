@@ -1,8 +1,3 @@
-/**
- * PostgreSQL Connection Pool Health & Diagnostic Monitor
- * Authored by Sarthak Bhatt (@SarthakBhatt55)
- */
-
 const { pool } = require('./index');
 
 /**

