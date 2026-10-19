@@ -2,6 +2,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import api, { getToken, API_BASE } from '../lib/api';
 import { useToast } from '../context/ToastContext';
+import { QR_COLOR_PRESETS, isScannableContrast } from '../lib/qrPresets';
+import '../styles/qrStudio.css';
 
 export default function QRPage() {
   const toast = useToast();
