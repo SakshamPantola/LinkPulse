@@ -70,7 +70,8 @@ CREATE TABLE IF NOT EXISTS click_events (
   is_bot       BOOLEAN     NOT NULL DEFAULT false,
   visitor_hash VARCHAR(64),
   source       VARCHAR(10) NOT NULL DEFAULT 'link'
-               CHECK (source IN ('link', 'qr'))
+               CHECK (source IN ('link', 'qr')),
+  is_blocked   BOOLEAN     NOT NULL DEFAULT false
 );
 
 -- Analytics queries filter by link + time range
