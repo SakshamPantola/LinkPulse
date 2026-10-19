@@ -10,7 +10,7 @@
 [![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL%20(Neon)-00E699?style=for-the-badge&logo=postgresql)](https://neon.tech)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 
-[🌐 Live Demo](https://link-pulse-delta.vercel.app) • [🔐 Admin Access](#-official-demo--admin-access) • [📸 Screenshots](#-product-walkthrough--visual-showcase) • [🏗️ Architecture](#️-system-architecture) • [🔄 DFD Diagrams](#-data-flow-diagrams-dfd) • [🗄️ ER Diagram](#️-entity-relationship-diagram-erd) • [👥 Team](#-team-platform404)
+[🌐 Live Demo](https://link-pulse-delta.vercel.app) • [🚀 Quick Start](#-quick-start--local-setup) • [🔐 Admin Access](#-official-demo--admin-access) • [📸 Screenshots](#-product-walkthrough--visual-showcase) • [🏗️ Architecture](#️-system-architecture) • [🔄 DFD Diagrams](#-data-flow-diagrams-dfd) • [🗄️ ER Diagram](#️-entity-relationship-diagram-erd) • [👥 Team](#-team-platform404)
 
 ---
 
@@ -257,6 +257,113 @@ erDiagram
 | **Security & Auth** | JWT (JSON Web Tokens), bcrypt hashing, Rate Limiting (20 req/min) |
 | **Telemetry Pipeline** | `geoip-lite`, `ua-parser-js`, `isbot`, SHA-256 Visitor Anonymization |
 | **Cloud Hosting** | Vercel (Frontend SPA) + Render (API Web Service) + Neon (Cloud Postgres) |
+
+---
+
+## 🚀 Quick Start & Local Setup
+
+Follow these steps to run and operate **LinkPulse** on your local machine:
+
+### 1. Prerequisites
+- **Node.js**: v18.0.0 or higher
+- **PostgreSQL**: Local instance or cloud database (e.g., [Neon](https://neon.tech) / Supabase)
+- **Git**
+
+### 2. Clone the Repository
+```bash
+git clone https://github.com/SakshamPantola/PLATFORM404-LinkPulse.git
+cd PLATFORM404-LinkPulse
+```
+
+---
+
+### 3. Backend Setup & Configuration
+
+1. **Navigate to the server directory and install dependencies**:
+   ```bash
+   cd server
+   npm install
+   ```
+
+2. **Configure environment variables**:
+   Create a `.env` file in the `server` directory (or copy from `.env.example`):
+   ```bash
+   cp .env.example .env
+   ```
+   Ensure the following values are configured in `server/.env`:
+   ```env
+   PORT=3001
+   NODE_ENV=development
+   DATABASE_URL=postgresql://postgres:postgres@localhost:5432/linkpulse
+   JWT_SECRET=your_super_secret_jwt_key
+   JWT_EXPIRES_IN=7d
+   CLIENT_URL=http://localhost:5173
+   BASE_URL=http://localhost:3001
+   REDIS_URL=
+   ```
+
+3. **Run database migrations and seed default data**:
+   ```bash
+   npm run migrate
+   npm run seed
+   ```
+   > 💡 *`npm run seed` creates the pre-configured Super Admin (`platform404@gmail.com` / `Admin@123`) and Regular User (`user@linkpulse.test` / `User@123`) accounts, sample campaigns, tags, and realistic click telemetry.*
+
+4. **Start the backend development server**:
+   ```bash
+   npm run dev
+   ```
+   The backend API will start on `http://localhost:3001` (Health check: `http://localhost:3001/health`).
+
+---
+
+### 4. Frontend Setup & Launch
+
+1. **In a separate terminal, navigate to the client directory**:
+   ```bash
+   cd client
+   npm install
+   ```
+
+2. **Configure client environment variables**:
+   Create a `.env` file in the `client` directory:
+   ```env
+   VITE_API_URL=http://localhost:3001
+   VITE_SHORT_BASE_URL=http://localhost:3001
+   ```
+
+3. **Start the Vite development server**:
+   ```bash
+   npm run dev
+   ```
+   The frontend application will be running at `http://localhost:5173`.
+
+---
+
+### 5. ⚡ Production 24/7 Keep-Alive (Zero Cold-Start Setup)
+
+Render's free tier automatically spins down web services after 15 minutes of inactivity. To ensure zero cold-start latency and keep the live deployment responsive 24/7:
+
+1. Create a free account on **[cron-job.org](https://cron-job.org/)** or **[UptimeRobot](https://uptimerobot.com/)**.
+2. Configure a new recurring monitor/cron job:
+   - **Target URL**: `https://linkpulse-fbk6.onrender.com/health` (or your backend health route)
+   - **Execution Interval**: Every **5 to 10 minutes**
+   - **HTTP Request Method**: `GET`
+3. This sends periodic lightweight heartbeats, keeping the Node.js process warm in memory and preventing sleep states completely.
+
+---
+
+### 🕹️ How to Operate the Application
+
+1. **Access the Web App**: Open your browser and navigate to `http://localhost:5173`.
+2. **Sign In**:
+   - **👑 Admin Role**: Sign in with `platform404@gmail.com` / `Admin@123` to access platform-wide governance at `/admin`, universal link kill-switches, and phishing domain blacklisting.
+   - **👤 Standard User**: Sign in with `user@linkpulse.test` / `User@123` (or register a fresh account) to create short links, customize QR codes, and organize campaigns.
+3. **Core Workflows**:
+   - **Create Short Link**: Click **Create Link**, paste your target destination URL, optionally add a custom alias, password lock, or expiration date/click limit.
+   - **Dynamic QR Studio**: Navigate to **QR Studio**, select any of your short links, tweak palette colors and output resolution, and download print-ready SVG or PNG assets.
+   - **Real-Time Analytics**: View overall telemetry on the **Dashboard** or click into any link's detail view to inspect geo-location distribution, browser/device charts, and bot-filtered traffic counts.
+   - **Admin Governance**: Switch to **Admin** to view system health, disable compromised links instantly with cache invalidation, and manage malicious domain blacklist rules.
 
 ---
 
