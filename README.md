@@ -201,13 +201,59 @@ Access the application at: `http://localhost:5173`
 
 ## 👥 Team PLATFORM404
 
-| Member | Role | GitHub |
-| :--- | :--- | :--- |
-| **Saksham Pantola** | Lead Full-Stack Architect & Deployment | [@SakshamPantola](https://github.com/SakshamPantola) |
-| **Nirmay Tripathi** | Frontend UI & Dynamic QR Studio | [@nirmaytripathi](https://github.com/nirmaytripathi) |
-| **Sarthak Bhatt** | Database Engineering & PostgreSQL Migrations | [@SarthakBhatt55](https://github.com/SarthakBhatt55) |
-| **Krishna Sijwali** | Security, URL Risk Scoring & Bot Filtering | [@krish222334843](https://github.com/krish222334843) |
-| **Tushar Tiwari** | Web Assets, Layout & Telemetry Dashboard | [@tiwaritushar02](https://github.com/tiwaritushar02) |
+<div align="center">
+
+<table>
+  <tr>
+    <td align="center" width="20%">
+      <a href="https://github.com/SakshamPantola">
+        <img src="https://github.com/SakshamPantola.png?size=120" width="100px;" alt="Saksham Pantola" style="border-radius: 50%;" /><br />
+        <sub><b>Saksham Pantola</b></sub>
+      </a><br />
+      <sub>🚀 Lead Full-Stack Architect</sub>
+    </td>
+    <td align="center" width="20%">
+      <a href="https://github.com/nirmaytripathi">
+        <img src="https://github.com/nirmaytripathi.png?size=120" width="100px;" alt="Nirmay Tripathi" style="border-radius: 50%;" /><br />
+        <sub><b>Nirmay Tripathi</b></sub>
+      </a><br />
+      <sub>🎨 Frontend UI & QR Studio</sub>
+    </td>
+    <td align="center" width="20%">
+      <a href="https://github.com/SarthakBhatt55">
+        <img src="https://github.com/SarthakBhatt55.png?size=120" width="100px;" alt="Sarthak Bhatt" style="border-radius: 50%;" /><br />
+        <sub><b>Sarthak Bhatt</b></sub>
+      </a><br />
+      <sub>🗄️ Database & Migrations</sub>
+    </td>
+    <td align="center" width="20%">
+      <a href="https://github.com/krish222334843">
+        <img src="https://github.com/krish222334843.png?size=120" width="100px;" alt="Krishna Sijwali" style="border-radius: 50%;" /><br />
+        <sub><b>Krishna Sijwali</b></sub>
+      </a><br />
+      <sub>🛡️ Security & Risk Scoring</sub>
+    </td>
+    <td align="center" width="20%">
+      <a href="https://github.com/tiwaritushar02">
+        <img src="https://github.com/tiwaritushar02.png?size=120" width="100px;" alt="Tushar Tiwari" style="border-radius: 50%;" /><br />
+        <sub><b>Tushar Tiwari</b></sub>
+      </a><br />
+      <sub>📊 Web Assets & Telemetry</sub>
+    </td>
+  </tr>
+</table>
+
+</div>
+
+### 📋 Member Roles & Key Contributions
+
+| Member | Role | Key Contributions & Modules Owned | GitHub Profile |
+| :--- | :--- | :--- | :--- |
+| **Saksham Pantola** | **Lead Full-Stack Architect & Deployment** | • End-to-end system architecture & repository orchestration<br>• Express REST API, JWT authentication & middleware design<br>• Multi-cloud production deployment (Render API + Vercel SPA + Neon DB) | [![GitHub](https://img.shields.io/badge/GitHub-SakshamPantola-181717?style=flat&logo=github)](https://github.com/SakshamPantola) |
+| **Nirmay Tripathi** | **Frontend UI & Dynamic QR Studio** | • React client interface development & glassmorphic theme system<br>• Real-time Dynamic QR code studio (custom color palettes & ECC levels)<br>• Print/digital export engines (high-res SVG & PNG generation) | [![GitHub](https://img.shields.io/badge/GitHub-nirmaytripathi-181717?style=flat&logo=github)](https://github.com/nirmaytripathi) |
+| **Sarthak Bhatt** | **Database Engineering & PostgreSQL Migrations** | • Relational schema modeling with `pgcrypto` UUID keys<br>• Automated migration scripts & indexing strategies<br>• Redirection query optimization and connection pooling with Neon | [![GitHub](https://img.shields.io/badge/GitHub-SarthakBhatt55-181717?style=flat&logo=github)](https://github.com/SarthakBhatt55) |
+| **Krishna Sijwali** | **Security, URL Risk Scoring & Bot Filtering** | • Automated destination URL risk calculation & threat scoring<br>• Crawler and web-scraper filtering engine (`isbot`)<br>• Phishing defense, domain blacklisting & bcrypt password protection | [![GitHub](https://img.shields.io/badge/GitHub-krish222334843-181717?style=flat&logo=github)](https://github.com/krish222334843) |
+| **Tushar Tiwari** | **Web Assets, Layout & Telemetry Dashboard** | • Real-time analytics dashboard layout & data visualization components<br>• Geo-location distribution breakdown (`geoip-lite`) & device charts<br>• Asset preparation, documentation visuals & responsive mobile layouts | [![GitHub](https://img.shields.io/badge/GitHub-tiwaritushar02-181717?style=flat&logo=github)](https://github.com/tiwaritushar02) |
 
 ---
 
