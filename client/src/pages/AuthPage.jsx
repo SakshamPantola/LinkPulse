@@ -36,10 +36,7 @@ export default function AuthPage() {
   return (
     <div className="auth-page">
       <div className="auth-card">
-        <div className="auth-brand-header">
-          <span className="auth-brand-dot" />
-          <h1>LinkPulse</h1>
-        </div>
+        <h1>LinkPulse</h1>
         <p className="subtitle">
           {isLogin ? 'Sign in to your account' : 'Create a new account'}
         </p>
