@@ -360,6 +360,5 @@ erDiagram
 
 <div align="center">
 
-Made with ⚡ by **Team PLATFORM404**
 
 </div>
