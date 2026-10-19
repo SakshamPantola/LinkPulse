@@ -1,0 +1,9 @@
+{
+  "name": "linkpulse-root",
+  "version": "1.0.0",
+  "description": "LinkPulse Enterprise URL Gateway",
+  "scripts": {
+    "build": "cd server && npm install",
+    "start": "cd server && npm start"
+  }
+}
