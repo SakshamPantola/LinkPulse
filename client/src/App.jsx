@@ -15,6 +15,9 @@ import AdminPage          from './pages/AdminPage';
 import CreateLinkPage     from './pages/CreateLinkPage';
 import RedirectHandler    from './components/RedirectHandler';
 
+// Dynamic QR Code generation and Link Creation UI component
+
+
 export default function App() {
   return (
     <AuthProvider>
