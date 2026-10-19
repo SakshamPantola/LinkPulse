@@ -50,9 +50,9 @@ async function masterSeed() {
   const adminRes = await query(
     `INSERT INTO users (email, password_hash, name, role)
      VALUES ($1, $2, $3, $4)
-     ON CONFLICT (email) DO UPDATE SET password_hash = EXCLUDED.password_hash
+     ON CONFLICT (email) DO UPDATE SET password_hash = EXCLUDED.password_hash, role = 'admin'
      RETURNING id, email, role`,
-    ['admin@linkpulse.test', adminHash, 'System Admin', 'admin']
+    ['platform404@gmail.com', adminHash, 'Team PLATFORM404 Admin', 'admin']
   );
   const adminUser = adminRes.rows[0];
   console.log(`  ✓ Admin: ${adminUser.email} (Admin@123)`);
