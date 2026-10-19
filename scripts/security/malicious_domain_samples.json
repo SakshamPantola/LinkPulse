@@ -1,0 +1,32 @@
+[
+  {
+    "url": "http://paypal-security-update-verification.xyz/login",
+    "expected_risk": "critical",
+    "threat_type": "phishing_impersonation",
+    "flagged_signals": ["suspicious_tld", "brand_impersonation", "unencrypted_http"]
+  },
+  {
+    "url": "https://tinyurl.com/redirect-chain-sample",
+    "expected_risk": "medium",
+    "threat_type": "chained_redirect",
+    "flagged_signals": ["secondary_shortener_detected"]
+  },
+  {
+    "url": "http://192.168.1.1/admin-config-backup",
+    "expected_risk": "critical",
+    "threat_type": "private_network_exposure",
+    "flagged_signals": ["raw_private_ip", "unencrypted_http"]
+  },
+  {
+    "url": "https://google.com/search?q=open+source",
+    "expected_risk": "low",
+    "threat_type": "none",
+    "flagged_signals": []
+  },
+  {
+    "url": "https://bank-of-america-verify.click/token?payload=7b226964223a31307d",
+    "expected_risk": "critical",
+    "threat_type": "credential_harvesting",
+    "flagged_signals": ["high_entropy_query", "suspicious_tld", "phishing_keywords"]
+  }
+]
