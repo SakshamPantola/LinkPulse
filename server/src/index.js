@@ -17,6 +17,10 @@ const ensureAdmin     = require('./ensureAdmin');
 
 const app = express();
 
+// Render runs behind a reverse proxy: trust it so req.ip is the real client IP
+// (needed for geo lookup, unique-visitor hashing and per-IP rate limiting).
+app.set('trust proxy', 1);
+
 app.use(helmet({
   contentSecurityPolicy: false,
   crossOriginResourcePolicy: false,
