@@ -306,6 +306,8 @@ cd PLATFORM404-LinkPulse
    DATABASE_URL=postgresql://postgres:postgres@localhost:5432/linkpulse
    JWT_SECRET=your_super_secret_jwt_key
    JWT_EXPIRES_IN=7d
+   ADMIN_EMAIL=platform404@gmail.com
+   ADMIN_PASSWORD=Admin@123
    CLIENT_URL=http://localhost:5173
    BASE_URL=http://localhost:3001
    REDIS_URL=

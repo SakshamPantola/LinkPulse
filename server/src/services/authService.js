@@ -39,7 +39,8 @@ async function register(body) {
     throw err;
   }
 
-  const role = cleanEmail === 'platform404@gmail.com' ? 'admin' : 'user';
+  const adminEmail = (config.adminEmail || 'platform404@gmail.com').toLowerCase();
+  const role = cleanEmail === adminEmail ? 'admin' : 'user';
   const hash = await bcrypt.hash(data.password, SALT_ROUNDS);
   const { rows } = await query(
     `INSERT INTO users (email, password_hash, name, role)

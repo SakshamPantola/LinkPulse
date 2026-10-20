@@ -13,6 +13,7 @@ const dashboardRoutes = require('./routes/dashboard');
 const adminRoutes     = require('./routes/admin');
 const redirectRoutes  = require('./routes/redirect');
 const clickWorker     = require('./services/clickWorker');
+const ensureAdmin     = require('./ensureAdmin');
 
 const app = express();
 
@@ -44,8 +45,9 @@ app.use('/', redirectRoutes);
 
 app.use(errorHandler);
 
-app.listen(config.port, () => {
+app.listen(config.port, async () => {
   clickWorker.start();
+  await ensureAdmin();
   console.log(`🚀 LinkPulse server running on http://localhost:${config.port}`);
 });
 
