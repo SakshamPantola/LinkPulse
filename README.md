@@ -27,7 +27,7 @@ For evaluator, judge, and platform reviewer convenience:
 
 > 💡 **Quick Access**:
 > - **Admin Oversight**: Visit [https://link-pulse-delta.vercel.app](https://link-pulse-delta.vercel.app) and sign in using `platform404@gmail.com` / `Admin@123` to review full administrative features and security telemetry.
-> - **Standard User Experience**: Agar khud user banke test karna hai, toh platform par direct **Sign Up / Register** karke instant account bana sakte hain (*Simply click **Sign Up** to register a fresh user account and test standard link workflows*).
+> - **Standard User Experience**: To test as a standard user, simply click **Sign Up** on the web app to create a fresh account instantly and explore link creation, dynamic QR studio, and campaign analytics.
 
 ---
 
