@@ -405,18 +405,18 @@ cd PLATFORM404-LinkPulse
 <table>
   <tr>
     <td align="center" width="20%">
-      <a href="https://github.com/tiwaritushar02">
-        <img src="https://github.com/tiwaritushar02.png?size=120" width="100px;" alt="Tushar Tiwari" style="border-radius: 50%;" /><br />
-        <sub><b>Tushar Tiwari</b></sub>
-      </a><br />
-      <sub>📊 Web Assets & Telemetry</sub>
-    </td>
-    <td align="center" width="20%">
       <a href="https://github.com/SarthakBhatt55">
         <img src="https://github.com/SarthakBhatt55.png?size=120" width="100px;" alt="Sarthak Bhatt" style="border-radius: 50%;" /><br />
         <sub><b>Sarthak Bhatt</b></sub>
       </a><br />
       <sub>🗄️ Database & Migrations</sub>
+    </td>
+    <td align="center" width="20%">
+      <a href="https://github.com/tiwaritushar02">
+        <img src="https://github.com/tiwaritushar02.png?size=120" width="100px;" alt="Tushar Tiwari" style="border-radius: 50%;" /><br />
+        <sub><b>Tushar Tiwari</b></sub>
+      </a><br />
+      <sub>📊 Web Assets & Telemetry</sub>
     </td>
     <td align="center" width="20%">
       <a href="https://github.com/SakshamPantola">
@@ -448,8 +448,8 @@ cd PLATFORM404-LinkPulse
 
 | Member | Role | Key Contributions & Modules Owned | GitHub Profile |
 | :--- | :--- | :--- | :--- |
-| **Tushar Tiwari** | **Web Assets, Layout & Telemetry Dashboard** | • Real-time analytics dashboard layout & data visualization components<br>• Geo-location distribution breakdown (`geoip-lite`) & device charts<br>• Asset preparation, documentation visuals & responsive mobile layouts | [![GitHub](https://img.shields.io/badge/GitHub-tiwaritushar02-181717?style=flat&logo=github)](https://github.com/tiwaritushar02) |
 | **Sarthak Bhatt** | **Database Engineering & PostgreSQL Migrations** | • Relational schema modeling with `pgcrypto` UUID keys<br>• Automated migration scripts & indexing strategies<br>• Redirection query optimization and connection pooling with Neon | [![GitHub](https://img.shields.io/badge/GitHub-SarthakBhatt55-181717?style=flat&logo=github)](https://github.com/SarthakBhatt55) |
+| **Tushar Tiwari** | **Web Assets, Layout & Telemetry Dashboard** | • Real-time analytics dashboard layout & data visualization components<br>• Geo-location distribution breakdown (`geoip-lite`) & device charts<br>• Asset preparation, documentation visuals & responsive mobile layouts | [![GitHub](https://img.shields.io/badge/GitHub-tiwaritushar02-181717?style=flat&logo=github)](https://github.com/tiwaritushar02) |
 | **Saksham Pantola** | **Lead Full-Stack Architect & Deployment** | • End-to-end system architecture & repository orchestration<br>• Express REST API, JWT authentication & middleware design<br>• Multi-cloud production deployment (Render API + Vercel SPA + Neon DB) | [![GitHub](https://img.shields.io/badge/GitHub-SakshamPantola-181717?style=flat&logo=github)](https://github.com/SakshamPantola) |
 | **Krishna Sijwali** | **Security, URL Risk Scoring & Bot Filtering** | • Automated destination URL risk calculation & threat scoring<br>• Crawler and web-scraper filtering engine (`isbot`)<br>• Phishing defense, domain blacklisting & bcrypt password protection | [![GitHub](https://img.shields.io/badge/GitHub-krish222334843-181717?style=flat&logo=github)](https://github.com/krish222334843) |
 | **Nirmay Tripathi** | **Frontend UI & Dynamic QR Studio** | • React client interface development & glassmorphic theme system<br>• Real-time Dynamic QR code studio (custom color palettes & ECC levels)<br>• Print/digital export engines (high-res SVG & PNG generation) | [![GitHub](https://img.shields.io/badge/GitHub-nirmaytripathi-181717?style=flat&logo=github)](https://github.com/nirmaytripathi) |
