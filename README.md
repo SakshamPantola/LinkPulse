@@ -338,18 +338,6 @@ cd PLATFORM404-LinkPulse
    ```
    The frontend application will be running at `http://localhost:5173`.
 
----
-
-### 5. ⚡ Production 24/7 Keep-Alive (Zero Cold-Start Setup)
-
-Render's free tier automatically spins down web services after 15 minutes of inactivity. To ensure zero cold-start latency and keep the live deployment responsive 24/7:
-
-1. Create a free account on **[cron-job.org](https://cron-job.org/)** or **[UptimeRobot](https://uptimerobot.com/)**.
-2. Configure a new recurring monitor/cron job:
-   - **Target URL**: `https://linkpulse-fbk6.onrender.com/health` (or your backend health route)
-   - **Execution Interval**: Every **5 to 10 minutes**
-   - **HTTP Request Method**: `GET`
-3. This sends periodic lightweight heartbeats, keeping the Node.js process warm in memory and preventing sleep states completely.
 
 ---
 
