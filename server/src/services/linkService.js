@@ -17,7 +17,7 @@ const validateSchema = z.object({
 
 const createSchema = z.object({
   destination_url: z.string().min(1, 'URL is required'),
-  alias:           z.string().optional(),
+  alias:           z.string().trim().min(2, 'Alias must be at least 2 characters').max(20, 'Alias cannot exceed 20 characters').optional(),
   expires_at:      z.string().datetime({ offset: true }).optional().nullable(),
   click_limit:     z.number().int().positive().optional().nullable(),
   password:        z.string().min(1).optional().nullable(),
@@ -164,7 +164,9 @@ async function validateLink({ destination_url, alias }) {
   }
 
   if (alias) {
-    if (!isValidAlias(alias)) {
+    if (alias.length < 2 || alias.length > 20) {
+      errors.push('Alias must be between 2 and 20 characters');
+    } else if (!isValidAlias(alias)) {
       errors.push('Alias may only contain letters, numbers, hyphens, and underscores');
     } else if (isReserved(alias)) {
       errors.push(`"${alias}" is a reserved word`);
@@ -198,22 +200,41 @@ async function createLink(userId, body) {
     throw err;
   }
 
+  if (data.expires_at) {
+    const expDate = new Date(data.expires_at);
+    if (isNaN(expDate.getTime()) || expDate <= new Date()) {
+      const err = new Error('Expiration date must be a valid future date');
+      err.status = 400;
+      throw err;
+    }
+  }
+
   const shortCode = data.alias || await generateUniqueCode();
 
   const passwordHash = data.password
     ? await bcrypt.hash(data.password, SALT_ROUNDS)
     : null;
 
-  const { rows } = await query(
-    `INSERT INTO links (short_code, destination_url, user_id, campaign_id,
-                        expires_at, click_limit, password_hash)
-     VALUES ($1, $2, $3, $4, $5, $6, $7)
-     RETURNING *`,
-    [shortCode, data.destination_url, userId,
-     data.campaign_id || null, data.expires_at || null,
-     data.click_limit || null, passwordHash]
-  );
-  const link = rows[0];
+  let link;
+  try {
+    const { rows } = await query(
+      `INSERT INTO links (short_code, destination_url, user_id, campaign_id,
+                          expires_at, click_limit, password_hash)
+       VALUES ($1, $2, $3, $4, $5, $6, $7)
+       RETURNING *`,
+      [shortCode, data.destination_url, userId,
+       data.campaign_id || null, data.expires_at || null,
+       data.click_limit || null, passwordHash]
+    );
+    link = rows[0];
+  } catch (dbErr) {
+    if (dbErr.code === '23505') {
+      const err = new Error('Short code or alias already taken. Please choose another.');
+      err.status = 409;
+      throw err;
+    }
+    throw dbErr;
+  }
 
   if (data.tags?.length) {
     for (const tagName of data.tags) {
@@ -269,7 +290,7 @@ async function getLinks(userId, role, { page = 1, limit = 20, search = '', tag =
   const dataParams = [...params, limit, offset];
   const { rows } = await query(
     `SELECT l.*,
-            COALESCE(c.click_count, 0)::int AS click_count,
+            GREATEST(COALESCE(l.clicks, 0), COALESCE(c.click_count, 0))::int AS click_count,
             camp.name AS campaign_name
      FROM links l
      ${tagJoin}
@@ -294,7 +315,7 @@ async function getLinks(userId, role, { page = 1, limit = 20, search = '', tag =
 async function getLinkById(linkId, userId, role) {
   const { rows } = await query(
     `SELECT l.*,
-            COALESCE(c.click_count, 0)::int AS click_count,
+            GREATEST(COALESCE(l.clicks, 0), COALESCE(c.click_count, 0))::int AS click_count,
             camp.name AS campaign_name
      FROM links l
      LEFT JOIN (
@@ -359,8 +380,18 @@ async function updateLink(linkId, userId, role, body) {
     }
   }
 
+  if (data.expires_at) {
+    const expDate = new Date(data.expires_at);
+    if (isNaN(expDate.getTime()) || expDate <= new Date()) {
+      const err = new Error('Expiration date must be a valid future date');
+      err.status = 400;
+      throw err;
+    }
+  }
+
   if (data.reset_clicks) {
     await query('DELETE FROM click_events WHERE link_id = $1', [linkId]);
+    await query('UPDATE links SET clicks = 0 WHERE id = $1', [linkId]);
     await invalidateLink(link.short_code);
   }
 

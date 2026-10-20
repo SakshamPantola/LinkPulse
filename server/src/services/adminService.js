@@ -1,6 +1,7 @@
 
 const { query } = require('../db');
 const { invalidateLink } = require('./linkService');
+const cache = require('./cacheService');
 
 async function getPlatformAnalytics() {
   
@@ -205,6 +206,9 @@ async function addBlockedDomain({ domain }) {
     [cleanDomain]
   );
 
+  // Invalidate cached links so redirects immediately recognize the newly blocked domain
+  await cache.invalidatePrefix('link:');
+
   return rows[0];
 }
 
@@ -218,6 +222,8 @@ async function removeBlockedDomain(id) {
     err.status = 404;
     throw err;
   }
+
+  await cache.invalidatePrefix('link:');
   return { message: `Domain "${rows[0].domain}" unblocked`, id };
 }
 

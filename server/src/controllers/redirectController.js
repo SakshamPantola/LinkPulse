@@ -39,10 +39,11 @@ function renderPage(title, body) {
 }
 
 function buildClickJob(req, link, { blocked = false } = {}) {
+  const clientIp = req.ip || req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown';
   return {
     linkId:      link.id,
     shortCode:   link.short_code,
-    ip:          req.ip || req.headers['x-forwarded-for'] || 'unknown',
+    ip:          clientIp,
     userAgent:   req.headers['user-agent'] || '',
     referrer:    req.headers.referer || req.headers.referrer || null,
     querySource: req.query.src || null,   
@@ -62,21 +63,24 @@ async function handleRedirect(req, res, next) {
         ));
 
       case 'disabled':
-        
         clickQueue.push(buildClickJob(req, result.link, { blocked: true }));
         return res.status(410).send(renderPage('Link Disabled',
           '<div class="icon">🚫</div><h1>Link Disabled</h1><p>This link has been disabled by its owner.</p>'
         ));
 
       case 'expired':
-        
         clickQueue.push(buildClickJob(req, result.link, { blocked: true }));
         return res.status(410).send(renderPage('Link Expired',
           '<div class="icon">⏰</div><h1>Link Expired</h1><p>This link has passed its expiry date.</p>'
         ));
 
+      case 'blocked':
+        clickQueue.push(buildClickJob(req, result.link, { blocked: true }));
+        return res.status(403).send(renderPage('Unsafe Website Blocked',
+          '<div class="icon">🛑</div><h1>Unsafe Website Blocked</h1><p>The destination website has been flagged and blocked for platform and user safety.</p>'
+        ));
+
       case 'limit_reached':
-        
         clickQueue.push(buildClickJob(req, result.link, { blocked: true }));
         return res.status(410).send(renderPage('Limit Reached',
           '<div class="icon">📊</div><h1>Click Limit Reached</h1><p>This link has reached its maximum number of clicks.</p>'
@@ -129,7 +133,6 @@ async function handleRedirect(req, res, next) {
         ));
 
       case 'redirect': {
-        
         clickQueue.push(buildClickJob(req, result.link));
         return res.redirect(302, result.link.destination_url);
       }
@@ -163,8 +166,8 @@ async function handleUnlock(req, res, next) {
       ));
     }
 
-    const { valid, link } = await verifyPassword(code, password);
-    if (!valid) {
+    const result = await verifyPassword(code, password);
+    if (!result.valid) {
       if (isJsonRequest) {
         return res.status(403).json({ error: 'Incorrect password. Please try again.' });
       }
@@ -180,13 +183,33 @@ async function handleUnlock(req, res, next) {
       ));
     }
 
-    clickQueue.push(buildClickJob(req, link));
-
-    if (isJsonRequest) {
-      return res.status(200).json({ success: true, redirectUrl: link.destination_url });
+    if (result.blocked) {
+      clickQueue.push(buildClickJob(req, result.link, { blocked: true }));
+      if (isJsonRequest) {
+        return res.status(403).json({ error: 'This destination domain has been blocked for safety reasons.' });
+      }
+      return res.status(403).send(renderPage('Unsafe Website Blocked',
+        '<div class="icon">🛑</div><h1>Unsafe Website Blocked</h1><p>The destination website has been flagged and blocked for platform and user safety.</p>'
+      ));
     }
 
-    return res.redirect(303, link.destination_url);
+    if (result.limitReached) {
+      clickQueue.push(buildClickJob(req, result.link, { blocked: true }));
+      if (isJsonRequest) {
+        return res.status(410).json({ error: 'This link has reached its click limit.' });
+      }
+      return res.status(410).send(renderPage('Limit Reached',
+        '<div class="icon">📊</div><h1>Click Limit Reached</h1><p>This link has reached its maximum number of clicks.</p>'
+      ));
+    }
+
+    clickQueue.push(buildClickJob(req, result.link));
+
+    if (isJsonRequest) {
+      return res.status(200).json({ success: true, redirectUrl: result.link.destination_url });
+    }
+
+    return res.redirect(303, result.link.destination_url);
   } catch (err) { next(err); }
 }
 
