@@ -16,16 +16,18 @@
 
 </div>
 
-## 🔐 Official Demo & Admin Access
+## 🔐 Official Demo & Platform Access
 
-For evaluator, judge, and platform reviewer convenience, pre-configured roles are active:
+For evaluator, judge, and platform reviewer convenience:
 
-| Role | Email | Password | Privileges Included |
+| Role | Access / Email | Password | Privileges Included |
 | :--- | :--- | :--- | :--- |
 | **👑 Super Admin** | `platform404@gmail.com` | `Admin@123` | **Full Platform Oversight**: Access to `/admin`, universal link enable/disable kill-switch, phishing domain blacklist manager, user directory, and platform-wide telemetry graphs. |
-| **👤 Marketer / User** | `user@linkpulse.test` | `User@123` | Short link creation, vanity aliases, password locking, QR studio, campaigns, and link analytics. |
+| **👤 Standard User** | **Register Account** (Click **Sign Up**) | *(Set your own)* | Register your own account directly to test short link creation, vanity aliases, password locking, QR studio, campaigns, and personal link analytics. |
 
-> **Direct Access**: Visit [https://link-pulse-delta.vercel.app](https://link-pulse-delta.vercel.app) and sign in using the Super Admin credentials above to test both user and admin capabilities.
+> 💡 **Quick Access**:
+> - **Admin Oversight**: Visit [https://link-pulse-delta.vercel.app](https://link-pulse-delta.vercel.app) and sign in using `platform404@gmail.com` / `Admin@123` to review full administrative features and security telemetry.
+> - **Standard User Experience**: Agar khud user banke test karna hai, toh platform par direct **Sign Up / Register** karke instant account bana sakte hain (*Simply click **Sign Up** to register a fresh user account and test standard link workflows*).
 
 ---
 
@@ -318,7 +320,7 @@ cd PLATFORM404-LinkPulse
    npm run migrate
    npm run seed
    ```
-   > 💡 *`npm run seed` creates the pre-configured Super Admin (`platform404@gmail.com` / `Admin@123`) and Regular User (`user@linkpulse.test` / `User@123`) accounts, sample campaigns, tags, and realistic click telemetry.*
+   > 💡 *`npm run seed` creates the pre-configured Super Admin (`platform404@gmail.com` / `Admin@123`) account, sample campaigns, tags, and realistic click telemetry. New user accounts can be registered anytime directly via the web UI.*
 
 4. **Start the backend development server**:
    ```bash
@@ -357,7 +359,7 @@ cd PLATFORM404-LinkPulse
 1. **Access the Web App**: Open your browser and navigate to `http://localhost:5173`.
 2. **Sign In**:
    - **👑 Admin Role**: Sign in with `platform404@gmail.com` / `Admin@123` to access platform-wide governance at `/admin`, universal link kill-switches, and phishing domain blacklisting.
-   - **👤 Standard User**: Sign in with `user@linkpulse.test` / `User@123` (or register a fresh account) to create short links, customize QR codes, and organize campaigns.
+   - **👤 Standard User**: Click **Sign Up** to register a new account (or sign in with your own credentials) to create short links, customize QR codes, and organize campaigns.
 3. **Core Workflows**:
    - **Create Short Link**: Click **Create Link**, paste your target destination URL, optionally add a custom alias, password lock, or expiration date/click limit.
    - **Dynamic QR Studio**: Navigate to **QR Studio**, select any of your short links, tweak palette colors and output resolution, and download print-ready SVG or PNG assets.
