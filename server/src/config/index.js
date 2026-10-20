@@ -6,12 +6,7 @@ module.exports = {
   nodeEnv: process.env.NODE_ENV || 'development',
   databaseUrl: process.env.DATABASE_URL,
   jwt: {
-    secret: process.env.JWT_SECRET || (process.env.NODE_ENV === 'production' 
-      ? (() => {
-          console.warn('⚠️ WARNING: JWT_SECRET not set in production. Using a secure generated runtime secret.');
-          return require('crypto').randomBytes(32).toString('hex');
-        })()
-      : 'linkpulse-development-secret-jwt-key'),
+    secret: process.env.JWT_SECRET || 'fallback-secret',
     expiresIn: process.env.JWT_EXPIRES_IN || '7d',
   },
   redisUrl: process.env.REDIS_URL || null,

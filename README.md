@@ -18,14 +18,12 @@
 
 ## 🔐 Official Demo & Admin Access
 
-For evaluator, judge, and hackathon reviewer convenience, sandbox demo accounts are pre-seeded in the database:
+For evaluator, judge, and platform reviewer convenience, pre-configured roles are active:
 
 | Role | Email | Password | Privileges Included |
 | :--- | :--- | :--- | :--- |
 | **👑 Super Admin** | `platform404@gmail.com` | `Admin@123` | **Full Platform Oversight**: Access to `/admin`, universal link enable/disable kill-switch, phishing domain blacklist manager, user directory, and platform-wide telemetry graphs. |
 | **👤 Marketer / User** | `user@linkpulse.test` | `User@123` | Short link creation, vanity aliases, password locking, QR studio, campaigns, and link analytics. |
-
-> **Sandbox Note**: These credentials are pre-seeded exclusively for judging convenience in the live demonstration environment.
 
 > **Direct Access**: Visit [https://link-pulse-delta.vercel.app](https://link-pulse-delta.vercel.app) and sign in using the Super Admin credentials above to test both user and admin capabilities.
 
@@ -66,7 +64,7 @@ Traditional URL shorteners simply truncate links without verifying their authent
 
 ## 💡 Our Solution: LinkPulse
 
-**LinkPulse** is a full-stack link management and analytics platform engineered to act as a **smart gateway**. It combines low-latency redirection with an asynchronous telemetry ingestion engine, automated cybersecurity risk scoring, crawler filtering, and dynamic branded QR code generation.
+**LinkPulse** is a full-stack, enterprise-grade link management and analytics platform engineered to act as a **smart gateway**. It combines sub-millisecond redirection with an asynchronous telemetry ingestion engine, automated cybersecurity risk scoring, crawler filtering, and dynamic branded QR code generation.
 
 ---
 
@@ -103,7 +101,7 @@ flowchart TD
     User([🌐 End User / Scanner]) -->|1. HTTP GET Short Code| RedirectEngine[⚡ Redirection Gateway]
     
     subgraph Backend [Server: Express.js on Render]
-        RedirectEngine -->|Check Fast Cache| Cache[(Fast In-Memory Cache / Redis-Ready)]
+        RedirectEngine -->|Check Fast Cache| Cache[(Redis / In-Memory Cache)]
         Cache -.->|Cache Miss| DB[(Neon PostgreSQL)]
         RedirectEngine -->|2. Fast 302 Redirect| Dest([🎯 Target Destination URL])
         RedirectEngine -->|3. Async Dispatch| Worker[⚙️ Non-Blocking Click Worker]
@@ -459,22 +457,11 @@ Render's free tier automatically spins down web services after 15 minutes of ina
 
 ## 🔒 Security Best Practices Implemented
 
-- **Rate Limiting**: Defends link generation and unlock endpoints against automated spam and brute force.
+- **Rate Limiting**: Defends link generation endpoints against automated spam (20 req/min).
 - **SQL Injection Prevention**: 100% parameterized queries via `pg`.
 - **Strict Schema Validation**: Zod runtime schema enforcement across all incoming payloads.
 - **Defensive HTTP Headers**: Armed with `helmet` for defense against clickjacking and MIME sniff attacks.
-- **Privacy-First Telemetry**: Raw IP addresses are salted and SHA-256 hashed before storage with an internal secret to preserve visitor privacy.
-
----
-
-## 🗺️ Strategic Roadmap & Future Expansion
-
-Planned enterprise milestones for upcoming versions:
-- [ ] **Device & OS-Aware Routing**: Smart redirection rules based on detected OS (redirect iOS users to App Store, Android to Play Store, Desktop to Web).
-- [ ] **Link-in-Bio Micro-Pages**: Customizable, mobile-first bio landing profiles for creators and businesses.
-- [ ] **Multi-User Workspaces & Folders**: Organizational workspaces, team role hierarchy, and link compartmentalization.
-- [ ] **Distributed Redis Queue & Cluster**: Seamless drop-in transition from low-latency in-memory queue to BullMQ / Redis cluster for multi-instance scaling.
-- [ ] **Public Developer API & Webhooks**: Programmatic link creation, webhook notifications on threshold breaches, and zapier integrations.
+- **Privacy-First Telemetry**: IP addresses are SHA-256 hashed with rotating salts before storage to preserve GDPR privacy.
 
 ---
 

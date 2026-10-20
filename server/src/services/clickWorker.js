@@ -36,25 +36,21 @@ function normalizeBrowser(uaResult) {
   return uaResult.browser?.name || 'Unknown';
 }
 
-const config = require('../config');
-
 function computeVisitorHash(ip, userAgent) {
-  const serverSalt = process.env.SALT_SECRET || config.jwt.secret || 'linkpulse-secure-salt';
+  
+  const dailySalt = new Date().toISOString().slice(0, 10); 
   return crypto
     .createHash('sha256')
-    .update(`${serverSalt}:${ip}:${userAgent}`)
+    .update(`${ip}:${userAgent}:${dailySalt}`)
     .digest('hex');
 }
 
 function resolveCountry(ip) {
-  if (!geoLookup || !ip || ip === 'unknown') return 'Unknown';
+  if (!geoLookup || !ip) return 'Unknown';
   try {
     let cleanIp = ip.split(',')[0].trim();
     if (cleanIp.startsWith('::ffff:')) {
       cleanIp = cleanIp.slice(7);
-    }
-    if (cleanIp === '127.0.0.1' || cleanIp === '::1' || cleanIp.startsWith('10.') || cleanIp.startsWith('192.168.')) {
-      return 'Local';
     }
     const geo = geoLookup(cleanIp);
     return geo?.country || 'Unknown';
@@ -97,7 +93,7 @@ async function handleClickJob(job) {
     [linkId, normalizedReferrer, device, browser, country, isBotVisitor, visitorHash, source, Boolean(blocked)]
   );
 
-  // Note: Link metadata cache is preserved so redirects remain sub-millisecond fast.
+  await cache.del(cacheKey(shortCode));
 }
 
 function start() {

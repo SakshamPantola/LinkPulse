@@ -35,7 +35,7 @@ function isReserved(alias) {
 }
 
 function isValidAlias(alias) {
-  return typeof alias === 'string' && /^[a-zA-Z0-9_-]+$/.test(alias) && alias.length >= 2 && alias.length <= 20;
+  return /^[a-zA-Z0-9_-]+$/.test(alias);
 }
 
 module.exports = { generateUniqueCode, isReserved, isValidAlias, RESERVED_WORDS };

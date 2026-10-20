@@ -16,9 +16,6 @@ const clickWorker     = require('./services/clickWorker');
 
 const app = express();
 
-// Trust reverse proxy (Render, Vercel, Cloudflare, etc.) to accurately extract client IP
-app.set('trust proxy', 1);
-
 app.use(helmet({
   contentSecurityPolicy: false,
   crossOriginResourcePolicy: false,
