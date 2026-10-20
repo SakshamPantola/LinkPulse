@@ -46,7 +46,7 @@ For evaluator, judge, and platform reviewer convenience, pre-configured roles ar
 ### 🔐 Clean Authentication Interface
 <img src="./screenshots/Signin_png.png" width="75%" alt="Authentication Interface" />
 
-*High-contrast responsive glassmorphic authentication with auto-admin rule verification*
+*High-contrast responsive glassmorphic authentication with strict Role-Based Access Control (RBAC)*
 
 </div>
 
@@ -105,19 +105,25 @@ flowchart TD
         Cache -.->|Cache Miss| DB[(Neon PostgreSQL)]
         RedirectEngine -->|2. Fast 302 Redirect| Dest([🎯 Target Destination URL])
         RedirectEngine -->|3. Async Dispatch| Worker[⚙️ Non-Blocking Click Worker]
+        
+        AuthGateway[🔐 Auth & RBAC Guard] -->|Verify JWT & Role| AdminAPI[👑 Admin Services]
+        AuthGateway -->|Verify JWT & Ownership| LinkAPI[🔗 Link & Campaign Services]
+        AdminAPI --> DB
+        LinkAPI --> DB
     end
 
     subgraph AnalyticsPipeline [Telemetry Enrichment Pipeline]
         Worker --> Geo[🌍 GeoIP Spatial Resolver]
         Worker --> UA[📱 Device & UA Normalizer]
         Worker --> Bot[🤖 isbot Bot Detection Engine]
-        Geo & UA & Bot --> Ingest[(PostgreSQL click_events)]
+        Geo & UA & Bot --> Ingest[(PostgreSQL: click_events)]
     end
 
     subgraph ClientApp [Frontend: React 18 + Vite on Vercel]
-        Marketer([👨‍💻 Marketer / Admin]) -->|Manage Links & View Telemetry| Dashboard[📊 LinkPulse Glassmorphic Dashboard]
-        Dashboard -->|REST API with JWT| AuthAPI[🔐 Authenticated API Gateway]
-        AuthAPI --> DB
+        Marketer([👨‍💻 Marketer / User]) -->|Manage Links & View Telemetry| Dashboard[📊 LinkPulse Glassmorphic Dashboard]
+        SuperAdmin([👑 Super Admin]) -->|Governance & Domain Shield| AdminPanel[🛡️ Admin Control Panel]
+        Dashboard -->|REST API with Bearer JWT| AuthGateway
+        AdminPanel -->|Protected Admin Routes| AuthGateway
     end
 ```
 
@@ -129,14 +135,14 @@ flowchart TD
 
 ```mermaid
 graph TD
-    User([🌐 End User]) -->|1. Requests Short URL| LinkPulse[⚡ LinkPulse System Gateway]
+    User([🌐 End User / Visitor]) -->|1. Requests Short URL| LinkPulse[⚡ LinkPulse System Gateway]
     LinkPulse -->|2. HTTP 302 Redirection| User
     
-    Marketer([👨‍💼 Marketer / User]) -->|3. Creates Links, Sets Passwords| LinkPulse
-    LinkPulse -->|4. Returns Analytics, Telemetry & QR| Marketer
+    Marketer([👨‍💼 Marketer / User]) -->|3. Authenticates, Creates Links & Sets Security| LinkPulse
+    LinkPulse -->|4. Returns JWT Token, Analytics & QR Assets| Marketer
     
     Admin([👑 Super Admin]) -->|5. Moderation, Blacklist Rules, Kill-Switch| LinkPulse
-    LinkPulse -->|6. Platform-Wide Oversight & Threat Stats| Admin
+    LinkPulse -->|6. Platform-Wide Oversight, User Directory & Threat Stats| Admin
     
     LinkPulse -->|7. Verified Forwarding| Destination([🎯 Destination Servers])
 ```
@@ -155,17 +161,20 @@ graph TD
     P2 -->|Parse UA| ExtBot[isbot Classifier]
     P2 -->|Store Event| D3[(PostgreSQL: click_events)]
     
-    Marketer([👨‍💼 Marketer]) -->|Submit URL| P3[3.0 Link Management Wizard]
+    Client([👤 User / Admin]) -->|Credentials / Register| P0[0.0 Auth & RBAC Guard]
+    P0 -->|Verify bcrypt / Issue JWT| D5[(PostgreSQL: users)]
+    P0 -->|Authenticated User Session| P3[3.0 Link Management Wizard]
+    P0 -->|Verified Admin Role| P4[4.0 Admin Governance]
+    
     P3 -->|Risk Audit| ExtRisk[Security Heuristics]
     P3 -->|Check Blacklist| D4[(PostgreSQL: blocked_domains)]
     P3 -->|Save Link| D2
     
-    Admin([👑 Admin]) -->|Block Domain / Kill Link| P4[4.0 Admin Governance]
     P4 -->|Invalidate Cache| D1
-    P4 -->|Update Status| D2
+    P4 -->|Update Status / Kill-Switch| D2
     P4 -->|Insert Rule| D4
     P4 -->|Read Aggregates| D3
-    D3 -->|Platform Stats| Admin
+    D3 -->|Platform Stats| Admin([👑 Admin])
 ```
 
 ---
@@ -184,10 +193,10 @@ erDiagram
 
     USERS {
         uuid id PK
-        string email UK
-        string password_hash
+        string email UK "unique, lowercased"
+        string password_hash "bcrypt hashed (salt=10)"
         string name
-        string role "user | admin"
+        string role "user | admin (enforced RBAC)"
         timestamptz created_at
     }
 
@@ -358,8 +367,8 @@ cd PLATFORM404-LinkPulse
 ## 📡 API Endpoints
 
 ### 🔐 Authentication
-- `POST /api/auth/register` — Register a new account (auto-assigns admin to `platform404@gmail.com`)
-- `POST /api/auth/login` — Authenticate and receive JWT
+- `POST /api/auth/register` — Register a new account (default role: `user`; super admin privileges strictly reserved for `platform404@gmail.com`)
+- `POST /api/auth/login` — Authenticate with bcrypt verification and receive JWT
 - `GET /api/auth/me` — Retrieve authenticated user profile and role
 
 ### 🔗 Link Management
@@ -445,6 +454,8 @@ cd PLATFORM404-LinkPulse
 
 ## 🔒 Security Best Practices Implemented
 
+- **Strict Role-Based Access Control (RBAC)**: Zero privilege escalation on registration/login; distinct separation between standard user capabilities and super admin governance (`/admin`).
+- **Cryptographic Password Hashing**: Passwords stored exclusively as `bcrypt` hashes (salt rounds = 10) with zero bypasses or hardcoded backdoors.
 - **Rate Limiting**: Defends link generation endpoints against automated spam (20 req/min).
 - **SQL Injection Prevention**: 100% parameterized queries via `pg`.
 - **Strict Schema Validation**: Zod runtime schema enforcement across all incoming payloads.
